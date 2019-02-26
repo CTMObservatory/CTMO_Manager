@@ -1,36 +1,26 @@
 # -*- coding: utf-8 -*-
-
 """
 Scheduler Module
 
-This is just a file to write first attempts at a scheduler module.
-
 (c) TOROS Project
 """
-
-
+from xmlrpc.server import SimpleXMLRPCServer
+import datetime
 import xmlrpc.client
-TELESCOPE_IP = "http://localhost:8000/"
 
+ 
+def is_even(n):
+     return n % 2 == 0
 
-def send_work_order():
-    work_order = {
-        "Priority": 1,
-        "Coordinates": {"RA": 23.1, "Dec": 13.2},
-        "Filter": "I",
-        "Author": "Main Module"
-    }
+def today():
+    today = datetime.datetime.today()
+    return xmlrpc.client.DateTime(today)
 
-    with xmlrpc.client.ServerProxy(TELESCOPE_IP) as telescope_module:
-        try:
-            telescope_module.front_desk(work_order)
-        except xmlrpc.client.ProtocolError as err:
-            print("A protocol error occurred")
-            print("URL: %s" % err.url)
-            print("HTTP/HTTPS headers: %s" % err.headers)
-            print("Error code: %d" % err.errcode)
-            print("Error message: %s" % err.errmsg)
+def front_desk(work_order):
+    return "Work order received."
 
-
-if __name__ == '__main__':
-    send_work_order()
+server = SimpleXMLRPCServer(("localhost", 8000))
+server.register_function(is_even, "is_even")
+server.register_function(today, "today")
+server.register_function(front_desk, "front_desk")
+server.serve_forever()

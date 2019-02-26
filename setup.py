@@ -8,5 +8,10 @@ setup(name='scheduler',
       url='https://toros.utrgv.edu',
       py_modules=['scheduler', ],
       install_requires=[],
+      entry_points={
+        'console_scripts': [
+            'epimetheus = scheduler:service',
+        ],
+      },
       test_suite='tests',
       )
