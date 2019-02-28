@@ -1,0 +1,13 @@
+[Unit]
+Description=The Scheduler Service for CTMO
+After=network.target
+
+[Service]
+Type=simple
+# User=scheduleruser
+# WorkingDirectory=/home/nanodano
+ExecStart=/usr/local/bin/epimetheus
+Restart=on-failure
+
+# [Install]
+# WantedBy=otherctmoservice

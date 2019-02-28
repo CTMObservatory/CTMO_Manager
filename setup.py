@@ -10,7 +10,7 @@ setup(name='scheduler',
       install_requires=[],
       entry_points={
         'console_scripts': [
-            'epimetheus = scheduler:service',
+            'epimetheus = scheduler:serve',
         ],
       },
       test_suite='tests',
