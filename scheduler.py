@@ -7,6 +7,8 @@ Scheduler Module
 import datetime
 import xmlrpc.client
 
+__version__ = '0.1a1'
+
 
 def is_even(n):
      return n % 2 == 0
