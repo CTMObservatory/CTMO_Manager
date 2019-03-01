@@ -7,9 +7,14 @@ with open('scheduler.py', 'r') as f:
             _, _, sch_version = line.replace("'", '').split()
             break
 
+with open('README.md', 'r') as f:
+    long_description = f.read()
+
 setup(name='scheduler',
       version=sch_version,
       description='Job Manager for CTMO System',
+      long_description=long_description,
+      long_description_content_type='text/markdown',
       author='TOROS Dev Team',
       author_email='ctmo@utrgv.edu',
       url='https://toros.utrgv.edu',
