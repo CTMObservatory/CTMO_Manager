@@ -1,3 +1,4 @@
 # Include the README
 include README.md
 include scheduler.service
+include makefile

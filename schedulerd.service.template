@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 # User=scheduleruser
 # WorkingDirectory=/home/nanodano
-ExecStart=/usr/local/bin/epimetheus
+ExecStart=/path/to/executable/epimetheus
 Restart=on-failure
 
 # [Install]
