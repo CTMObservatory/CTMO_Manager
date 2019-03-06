@@ -4,18 +4,33 @@ Simple script to test if XMLRPC communication works.
 (c) TOROS Project
 """
 import xmlrpc.client
-TELESCOPE_IP = "http://localhost:8000/"
+import yaml
+CONFIG_PATH = '/etc/torosd/scheduler.conf.yml'
 
+config = None
+with open(CONFIG_PATH) as f:
+    config = yaml.load(f.read())
+network = config.get('Scheduler Address')
 
 def send_work_order():
     work_order = {
-        "Priority": 1,
-        "Coordinates": {"RA": 23.1, "Dec": 13.2},
+        "ID": "1",
+        "Telescope Name": "Nompuewenu",
+        "RA": 23.1,
+        "Dec": 13.2,
         "Filter": "I",
-        "Author": "Main Module"
+        "Exposure Time": 30.0,
+        "Number of Exposures": 1,
+        "Priority": 1.3,
+        "Datetime": "2019-03-05T14:34:54.234",
+        "User": "Main Module",
+        "Type of job": "Research",
+        "Type of object": "Galaxy",
+        "Calibration Frames": "Yes",
+        "Output": "Analysis",
     }
 
-    with xmlrpc.client.ServerProxy(TELESCOPE_IP) as telescope_module:
+    with xmlrpc.client.ServerProxy(network.get('HTTP')) as telescope_module:
         try:
             ret_string = telescope_module.front_desk(work_order)
             print(ret_string)

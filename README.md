@@ -40,7 +40,7 @@ Where `action` is one of: `start`, `stop` or `restart`.
 
 To uninstall:
 
-    $ make uninstall
+    $ sudo make uninstall
 
 ### Test
 
