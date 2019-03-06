@@ -1,3 +1,5 @@
+# This is a template for the systemd .service file.
+# Comments will be stripped off when installed.
 [Unit]
 Description=The Scheduler Service for CTMO
 After=network.target

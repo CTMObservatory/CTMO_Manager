@@ -1,5 +1,5 @@
 Scheduler Address: {
-  HTTP: http://localhost:8000/
+  HTTP: http://localhost:8000/,
   IP: localhost,
   Port: 8000
 }

@@ -10,6 +10,14 @@ import yaml
 
 __version__ = '0.1a2'
 
+import pyyaml
+CONFIG_PATH = '/etc/torosd/scheduler.conf.yml'
+
+config = None
+with open(CONFIG_PATH) as f:
+    config = yaml.load(f.read())
+net_address = config.get('Scheduler Address')
+
 def is_even(n):
      return n % 2 == 0
 
@@ -23,7 +31,7 @@ def front_desk(work_order):
 def serve():
     from xmlrpc.server import SimpleXMLRPCServer
 
-    server = SimpleXMLRPCServer(("localhost", 8000))
+    server = SimpleXMLRPCServer((net_address.get('IP'), net_address.get('Port')))
     server.register_function(is_even, "is_even")
     server.register_function(today, "today")
     server.register_function(front_desk, "front_desk")

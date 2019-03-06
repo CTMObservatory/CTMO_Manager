@@ -19,7 +19,7 @@ setup(name='scheduler',
       author_email='ctmo@utrgv.edu',
       url='https://toros.utrgv.edu',
       py_modules=['scheduler', ],
-      install_requires=[],
+      install_requires=['pyyaml'],
       entry_points={
         'console_scripts': [
             'epimetheus = scheduler:serve',
