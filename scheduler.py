@@ -2,13 +2,13 @@
 """
 Scheduler Module
 
-(c) TOROS Project
+(c) GAIA-CTMO
 """
 import datetime
 import xmlrpc.client
 import yaml
 
-__version__ = '0.1a3'
+__version__ = '0.1a4'
 
 import yaml
 CONFIG_PATH = '/etc/torosd/scheduler.conf.yml'

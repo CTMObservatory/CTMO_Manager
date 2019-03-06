@@ -23,7 +23,7 @@ install: $(service_dir) $(conf_dir) schedulerd.service scheduler.conf.yml
 	cp scheduler.conf.yml $(conf_dir)/scheduler.conf.yml
 
 uninstall:
-	systemctl stop schedulerd
+	-systemctl stop schedulerd
 	rm -r $(service_dir)
 	rm -r $(conf_dir)
 
