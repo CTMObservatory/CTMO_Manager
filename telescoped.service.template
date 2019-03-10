@@ -6,7 +6,7 @@ After=network.target
 
 [Service]
 Type=simple
-# User=telescopeuser
+User=root
 # WorkingDirectory=/home/nanodano
 ExecStart=/path/to/executable/telescope
 Restart=on-failure

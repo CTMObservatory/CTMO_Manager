@@ -6,7 +6,7 @@ After=network.target
 
 [Service]
 Type=simple
-# User=scheduleruser
+User=root
 # WorkingDirectory=/home/myuser
 ExecStart=/path/to/scheduler/script
 Restart=on-failure
