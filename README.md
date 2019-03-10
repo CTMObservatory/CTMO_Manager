@@ -1,4 +1,6 @@
-# Scheduler
+# `:alarm_clock:` Scheduler
+
+## Installation
 
 To install, clone this repo and run the makefile.
 Preferably use a virtual environment
@@ -10,7 +12,7 @@ Preferably use a virtual environment
 
 Installation requires root privilege.
 
-# Start the schedulerd service with systemctl
+## Start the schedulerd service with systemctl
 
 To start, stop or restart the service, use
 
@@ -18,12 +20,12 @@ To start, stop or restart the service, use
 
 Where `action` is one of: `start`, `stop` or `restart`.
 
-# To clean and uninstall:
+## To clean and uninstall:
 
     $ make clean
     $ sudo make uninstall
 
-# Test
+## Test
 
 You can test the availability of the service with `send_work_order.py` script:
 
