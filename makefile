@@ -1,7 +1,7 @@
 all: epimetheus schedulerd.service
 .PHONY: all epimetheus install uninstall clean
 
-service_dir=/etc/systemd/system/schedulerd
+service_dir=/etc/systemd/system
 conf_dir=/etc/torosd
 awk_script='BEGIN {FS="="; OFS="="}{if ($$1=="ExecStart") {$$2=exec_path} if (substr($$1,1,1) != "\#") {print $$0}}'
 
@@ -12,9 +12,6 @@ schedulerd.service: scheduler.py
 # awk is needed to replace the absolute path of the epimetheus executable in the .service file
 	awk -v exec_path=$(shell which epimetheus) $(awk_script) schedulerd.service.template > schedulerd.service
 
-$(service_dir):
-	mkdir -p $@
-
 $(conf_dir):
 	mkdir -p $@
 
@@ -24,8 +21,8 @@ install: $(service_dir) $(conf_dir) schedulerd.service scheduler.conf.yml
 
 uninstall:
 	-systemctl stop schedulerd
-	rm -r $(service_dir)
+	rm $(service_dir)/schedulerd.service
 	rm -r $(conf_dir)
 
 clean:
-	rm -f schedulerd.service
+	-rm schedulerd.service

@@ -8,7 +8,7 @@ import datetime
 import xmlrpc.client
 import yaml
 
-__version__ = '0.1a4'
+__version__ = '0.1a5'
 
 import yaml
 CONFIG_PATH = '/etc/torosd/scheduler.conf.yml'
