@@ -1,4 +1,4 @@
-# `:alarm_clock:` Scheduler
+# Scheduler :alarm_clock:
 
 ## Installation
 
