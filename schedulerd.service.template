@@ -7,8 +7,8 @@ After=network.target
 [Service]
 Type=simple
 # User=scheduleruser
-# WorkingDirectory=/home/nanodano
-ExecStart=/path/to/executable/epimetheus
+# WorkingDirectory=/home/myuser
+ExecStart=/path/to/scheduler/script
 Restart=on-failure
 
 # [Install]
