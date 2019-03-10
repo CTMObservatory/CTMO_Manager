@@ -22,7 +22,7 @@ setup(name='scheduler',
       install_requires=['pyyaml'],
       entry_points={
         'console_scripts': [
-            'epimetheus = scheduler:serve',
+            'scheduler = scheduler:serve',
         ],
       },
       test_suite='tests',
