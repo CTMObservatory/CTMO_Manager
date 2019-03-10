@@ -1,4 +1,4 @@
 include README.md
 include schedulerd.service.template
 include makefile
-include scheduler.conf.yml
+include scheduler.conf.yaml

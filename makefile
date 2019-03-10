@@ -15,9 +15,9 @@ schedulerd.service: scheduler.py
 $(conf_dir):
 	mkdir -p $@
 
-install: $(service_dir) $(conf_dir) schedulerd.service scheduler.conf.yml
+install: $(service_dir) $(conf_dir) schedulerd.service scheduler.conf.yaml
 	cp schedulerd.service $(service_dir)
-	cp scheduler.conf.yml $(conf_dir)/scheduler.conf.yml
+	cp scheduler.conf.yaml $(conf_dir)/scheduler.conf.yaml
 
 uninstall:
 	-systemctl stop schedulerd
