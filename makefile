@@ -10,7 +10,7 @@ awk_script='BEGIN {FS="="; OFS="="}{if ($$1=="ExecStart") {$$2=exec_path} if (su
 py_scripts: $(wildcard *.py)
 	pip install .
 
-%d.service: %d.service.template %.py
+%d.service: %d.service.template ctmomanager/%.py
 # awk is needed to replace the absolute path of the scheduler script in the .service file
 	awk -v exec_path=$(shell which $(*)) $(awk_script) $< > $@
 

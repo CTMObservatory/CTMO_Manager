@@ -1,29 +1,30 @@
-# Scheduler :alarm_clock:
+# CTMO Manager :telescope:
 
 ## Installation
 
 To install, clone this repo and run the makefile.
 Preferably use a virtual environment
 
-    $ git clone https://github.com/CTMObservatory/Scheduler.git
-    $ mkvirtualenv -p python3 scheduler
+    $ git clone https://github.com/CTMObservatory/CTMO_Manager.git
+    $ mkvirtualenv -p python3 ctmo
     $ make
     $ sudo make install
 
 Installation requires root privilege.
 
-## Start the schedulerd service with systemctl
+## Start any service with systemctl
 
-To start, stop or restart the service, use
+To start, stop or restart a service, use
 
-    $ systemctl [action] schedulerd
+    $ systemctl [action] [service]
 
-Where `action` is one of: `start`, `stop` or `restart`.
+Where `action` is one of: `start`, `stop` or `restart`
+and service is any of `telescoped` or `schedulerd`.
 
 ## To clean and uninstall:
 
     $ make clean
-    $ sudo make uninstall
+    $ sudo -H make uninstall
 
 ## Test
 

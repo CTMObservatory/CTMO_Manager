@@ -5,12 +5,13 @@ Simple script to test if XMLRPC communication works.
 """
 import xmlrpc.client
 import yaml
-CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
 
+CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
 config = None
 with open(CONFIG_PATH) as f:
-    config = yaml.load(f.read())
+    config = yaml.full_load(f.read())
 network = config.get('Scheduler Address')
+
 
 def send_work_order():
     work_order = {
@@ -40,6 +41,7 @@ def send_work_order():
             print("HTTP/HTTPS headers: %s" % err.headers)
             print("Error code: %d" % err.errcode)
             print("Error message: %s" % err.errmsg)
+
 
 if __name__ == '__main__':
     send_work_order()

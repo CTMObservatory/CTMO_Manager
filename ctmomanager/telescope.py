@@ -4,18 +4,12 @@ Scheduler Module
 
 (c) GAIA-CTMO
 """
-import datetime
-import xmlrpc.client
 import yaml
 
-__version__ = '0.1a1'
-
-import yaml
 CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
-
 config = None
 with open(CONFIG_PATH) as f:
-    config = yaml.load(f.read())
+    config = yaml.full_load(f.read())
 net_address = config.get('Telescope Address')
 
 def front_desk(work_order):
