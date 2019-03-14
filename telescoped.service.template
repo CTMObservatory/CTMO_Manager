@@ -1,0 +1,15 @@
+# This is a template for the systemd .service file.
+# Comments will be stripped off when installed.
+[Unit]
+Description=The Telescope Service for CTMO
+After=network.target
+
+[Service]
+Type=simple
+# User=telescopeuser
+# WorkingDirectory=/home/nanodano
+ExecStart=/path/to/executable/telescope
+Restart=on-failure
+
+# [Install]
+# WantedBy=otherctmoservice
