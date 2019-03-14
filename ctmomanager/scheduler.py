@@ -4,15 +4,6 @@ Scheduler Module
 
 (c) GAIA-CTMO
 """
-import yaml
-
-CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
-config = None
-with open(CONFIG_PATH) as f:
-    config = yaml.full_load(f.read())
-net_address = config.get('Scheduler Address')
-
-
 def front_desk(work_order):
     for k, v in work_order.items():
         print("{}:\t{}".format(k, v))
@@ -21,7 +12,8 @@ def front_desk(work_order):
 
 def serve():
     from xmlrpc.server import SimpleXMLRPCServer
-
+    from . import config
+    net_address = config.get_config_for_key('Scheduler Address')
     server = SimpleXMLRPCServer((net_address.get('IP'), net_address.get('Port')))
     server.register_function(front_desk, "front_desk")
     server.serve_forever()

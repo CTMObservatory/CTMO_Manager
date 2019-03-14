@@ -6,6 +6,7 @@ To install, clone this repo and run the makefile.
 Preferably use a virtual environment
 
     $ git clone https://github.com/CTMObservatory/CTMO_Manager.git
+    $ cd CTMO_Manager
     $ mkvirtualenv -p python3 ctmo
     $ make
     $ sudo make install

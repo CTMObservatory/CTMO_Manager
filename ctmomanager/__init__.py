@@ -1,4 +1,4 @@
 from . import telescope
 from . import scheduler
 
-__version__ = '0.1a7'
+__version__ = '0.1a8'
