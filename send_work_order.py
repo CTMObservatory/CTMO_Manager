@@ -5,7 +5,7 @@ Simple script to test if XMLRPC communication works.
 """
 import xmlrpc.client
 import yaml
-CONFIG_PATH = '/etc/torosd/scheduler.conf.yaml'
+CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
 
 config = None
 with open(CONFIG_PATH) as f:

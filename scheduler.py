@@ -11,7 +11,7 @@ import yaml
 __version__ = '0.1a6'
 
 import yaml
-CONFIG_PATH = '/etc/torosd/scheduler.conf.yaml'
+CONFIG_PATH = '/etc/ctmo/ctmo.conf.yaml'
 
 config = None
 with open(CONFIG_PATH) as f:
