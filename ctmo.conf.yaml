@@ -9,3 +9,8 @@ Telescope Address: {
   IP: localhost,
   Port: 8010
 }
+
+Logging: {
+  Dir: /etc/ctmo/logs,
+  Log Level: INFO
+}
