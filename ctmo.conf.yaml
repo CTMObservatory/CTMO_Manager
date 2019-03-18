@@ -11,6 +11,6 @@ Telescope Address: {
 }
 
 Logging: {
-  Dir: /etc/ctmo/logs,
+  File: /etc/ctmo/logs/ctmo.log,
   Log Level: INFO
 }

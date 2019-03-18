@@ -4,11 +4,10 @@ Scheduler Module
 
 (c) GAIA-CTMO
 """
-import logging
+from loguru import logger
 
 
 def front_desk(work_order):
-    logger = logging.getLogger(__name__)
     logger.info("Work order received.")
     logger.debug("{}".format(work_order))
     for k, v in work_order.items():
@@ -17,7 +16,6 @@ def front_desk(work_order):
 
 
 def serve():
-    logger = logging.getLogger(__name__)
     logger.info("Started serving.")
 
     from xmlrpc.server import SimpleXMLRPCServer

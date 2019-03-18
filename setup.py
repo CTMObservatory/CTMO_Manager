@@ -18,7 +18,7 @@ setup(name='ctmomanager',
       author_email='ctmo@utrgv.edu',
       url='https://github.com/CTMObservatory',
       packages=['ctmomanager', ],
-      install_requires=['pyyaml'],
+      install_requires=['pyyaml', 'loguru'],
       entry_points={
         'console_scripts': [
             'scheduler = ctmomanager.scheduler:serve',
