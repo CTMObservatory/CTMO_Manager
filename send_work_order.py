@@ -16,7 +16,8 @@ network = config.get('Scheduler Address')
 def send_work_order():
     work_order = {
         "ID": "1",
-        "Telescope Name": "Nompuewenu",
+        "WOType": "Observation",
+        "Telescope Name": "CTMO",
         "RA": 23.1,
         "Dec": 13.2,
         "Filter": "I",
