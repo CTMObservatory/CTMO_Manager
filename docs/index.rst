@@ -3,13 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to CTMO Manager's documentation!
-========================================
+CTMO Manager's Documentation
+============================
 
+The CTMO Manager is a collection of installable daemons (services) to automize telescope 
+operations.
+
+
+Contents:
+^^^^^^^^^
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   installation
+   configuration
+   services
 
 
 Indices and tables
@@ -18,3 +26,4 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
