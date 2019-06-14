@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CTMO RCC</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- A grey horizontal navbar that becomes vertical on small screens -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">CTMO</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="mt-sm-4">CTM Observatory Remote Control Center</h1>
+
+    <div class="row">
+      <div class="col-4-sm">
+        <div class="container">
+
+          <div id="app2" class="card">
+            <div class="card-header">Repeating component</div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" v-model="address" class="form-control" id="ipaddress" placeholder="127.0.0.0:8080">
+              </div>
+              <p>Addesss is {{ address }}</p>
+              <single-switch label="Sensor 1" :ipaddress="address"></single-switch>
+              <single-switch label="Sensor 2" :ipaddress="address"></single-switch>
+              <single-switch label="Sensor 3" :ipaddress="address"></single-switch>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    Vue.component('single-switch', {
+      props: ['ipaddress', 'label'],
+      template: `
+      <div>
+        <label class="switch">
+          <input type="checkbox" :checked="state" v-on:click="toggle">
+          <span class="slider round"></span>
+        </label>
+        <label>{{ label }} is {{ state ? "ON": "OFF" }}</label>
+        <p>Will connect to {{ ipaddress }}</p>
+      </div>
+      `,
+      data: function() {
+        return {
+          state: false
+        }
+      },
+      methods: {
+        toggle: function() {
+          this.state = !this.state
+        }
+      }
+    });
+
+    var app2 = new Vue({
+      el: "#app2",
+      data: function () {
+        return {
+          address: ""
+        }
+      },
+      methods: {
+        logme: function () {
+          console.log("Yes")
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>

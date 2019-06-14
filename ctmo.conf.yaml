@@ -10,6 +10,13 @@ Telescope Address: {
   Port: 8010
 }
 
+Dome Address: {
+  HTTP: "http://localhost:8020/",
+  IP: localhost,
+  Port: 8020,
+  Arduino: '/dev/cu.usbmodem14301'
+}
+
 Logging: {
   File: /etc/ctmo/logs/ctmo.log,
   Log Level: INFO
