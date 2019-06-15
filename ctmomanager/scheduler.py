@@ -15,19 +15,27 @@ def front_desk(work_order):
     for k, v in work_order.items():
         print("{}:\t{}".format(k, v))
     wotype = work_order.get('WOType')
-    if (wotype is not None) and (wotype == "Observation"):
+    if wotype is None:
+        logger.error("Missing key: WOType.")
+        return
+    if wotype == "Observation":
         # Send it over to telescope module
         telnet = config.get_config_for_key("Telescope Address")
         with xmlrpc.client.ServerProxy(telnet.get('HTTP')) as telescope_module:
             try:
                 ret_string = telescope_module.front_desk(work_order)
                 print(ret_string)
-            except xmlrpc.client.ProtocolError as err:
-                print("A protocol error occurred")
-                print("URL: %s" % err.url)
-                print("HTTP/HTTPS headers: %s" % err.headers)
-                print("Error code: %d" % err.errcode)
-                print("Error message: %s" % err.errmsg)
+            except:
+                logger.exception("Error connecting with Telescope.")
+    elif wotype == "Dome":
+        # Send it over to dome module
+        telnet = config.get_config_for_key("Dome Address")
+        with xmlrpc.client.ServerProxy(telnet.get('HTTP')) as dome_module:
+            try:
+                ret_string = dome_module.front_desk(work_order)
+                print(ret_string)
+            except:
+                logger.exception("Error connecting with Dome.")
     return "Work order received."
 
 

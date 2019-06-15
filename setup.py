@@ -18,11 +18,12 @@ setup(name='ctmomanager',
       author_email='ctmo@utrgv.edu',
       url='https://github.com/CTMObservatory',
       packages=['ctmomanager', ],
-      install_requires=['pyyaml', 'loguru'],
+      install_requires=['pyyaml', 'loguru', 'nanpy'],
       entry_points={
         'console_scripts': [
             'scheduler = ctmomanager.scheduler:serve',
             'telescope = ctmomanager.telescope:serve',
+            'dome = ctmomanager.dome:serve',
         ],
       },
       test_suite='tests',

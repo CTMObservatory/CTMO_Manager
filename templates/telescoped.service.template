@@ -1,14 +1,14 @@
 # This is a template for the systemd .service file.
 # Comments will be stripped off when installed.
 [Unit]
-Description=The Scheduler Service for CTMO
+Description=The Telescope Service for CTMO
 After=network.target
 
 [Service]
 Type=simple
 User=root
-# WorkingDirectory=/home/myuser
-ExecStart=/path/to/scheduler/script
+# WorkingDirectory=/home/nanodano
+ExecStart=scriptname
 Restart=on-failure
 
 # [Install]

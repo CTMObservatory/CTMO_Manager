@@ -9,60 +9,44 @@ from nanpy import ArduinoApi, SerialManager
 from time import sleep
 import sys
 
+connection = SerialManager(device='/dev/cu.usbmodem14101')
+a = ArduinoApi(connection=connection)
 
+def turn_led(state):
+    global a
+    ledPin = 7
+    if state:
+        a.digitalWrite(ledPin, a.HIGH)
+    else:
+        a.digitalWrite(ledPin, a.LOW)
 
-class Arduino(object):
-    def __init__(self, device):
-        self.device = device
-        self.ledPin = 7
-        self.buttonPin = 8
-        self.ledState = False
-        self.buttonState = 0
-
-    def setup(self):
-        try:
-            connection = SerialManager(device=self.device)
-            self.ard = ArduinoApi(connection=connection)
-        except:
-            self.ard = None
-            logger.error("Failed to connect to Arduino")
-            return
-         # Setup the pin modes
-        self.ard.pinMode(self.ledPin, self.ard.OUTPUT)
-        self.ard.pinMode(self.buttonPin, self.ard.INPUT)
-
-    def turnOnLED(self):
-        if not self.ledState:
-            self.ard.digitalWrite(ledPin, self.ard.HIGH)
-            self.ledState = True
-            sleep(1)
-
-    def turnOffLED(self):
-        if self.ledState:
-            self.ard.digitalWrite(ledPin, self.ard.LOW)
-            self.ledState = False
-            sleep(1)
-
-_arduino = None
 
 def front_desk(work_order):
+    global a
+    ledPin = 7
+    # Setup the pin modes
+    a.pinMode(ledPin, a.OUTPUT)
+
     logger.info("Work order received.")
     logger.debug("{}".format(work_order))
-    for k, v in work_order.items():
-        print("{}:\t{}".format(k, v))
+    blink01 = work_order.get("Blink01")
+    if blink01 is not None:
+        turn_led(blink01)
+    # for k, v in work_order.items():
+    #     print("{}:\t{}".format(k, v))
+
     return "Work order received."
 
 
 def serve():
     logger.info("Started serving.")
-    global _arduino
-    try
-        device = config.get_config_for_key('Dome Address').get('Arduino')
-        _arduino = Arduino(device)
-    except:
-        logger.error("Error setting up Arduino")
-    from xmlrpc.server import SimpleXMLRPCServer
     from . import config
+    # try:
+    #     device = config.get_config_for_key('Dome Address').get('Arduino')
+    #     _arduino = Arduino(device)
+    # except:
+    #     logger.error("Error setting up Arduino")
+    from xmlrpc.server import SimpleXMLRPCServer
     net_address = config.get_config_for_key('Dome Address')
     server = SimpleXMLRPCServer((net_address.get('IP'), net_address.get('Port')))
     server.register_function(front_desk, "front_desk")
