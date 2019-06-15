@@ -42,4 +42,8 @@ Each services will run as a daemon (background process)
 and work on a specific port specified in the configuration file
 using the `XML-RPC`_ protocol.
 
+Each service responds to a single function called ``front_desk`` which accepts a "Work Order".
+
+Work Orders (WO) are dictionaries with a specific structure described in :ref:`wo`.
+
 .. _XML-RPC: http://xmlrpc.scripting.com
