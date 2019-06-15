@@ -1,35 +1,39 @@
+.. _conf:
+
 Configuring your system
 =======================
 
-Before you start the systemd services you may have to configure your manager
+Before you start the services you may have to configure your manager
 to work with your system.
 
 
 Configuration file
 ------------------
 
-Open the configuration file located in `/etc/ctmo/ctmo.conf.yaml`.
-Inside you will find configuration for the services as well as logging.
+Open the configuration file located in ``/etc/ctmo/ctmo.conf.yaml``.
+Inside you will find a `YAML`_ configuration file for the services.
 
-The syntax for the configuration file is YAML.
+.. _sch:
 
-Scheduler Address:
-^^^^^^^^^^^^^^^^^^
-**HTTP:** The full address and port to locate the `scheduler` service on the net.
+Scheduler Address
+^^^^^^^^^^^^^^^^^
+**HTTP:** The full address and port to locate the ``scheduler`` service on the net.
 
-**IP:** The IP address of the server running the `scheduler` service.
+**IP:** The IP address of the server running the ``scheduler`` service.
 
-**Port:** The port for the address of the server running the `scheduler` service.
+**Port:** The port for the address of the server running the ``scheduler`` service.
 
-Telescope Address:
-^^^^^^^^^^^^^^^^^^
+Telescope Address
+^^^^^^^^^^^^^^^^^
 
-See Scheduler Address.
+See :ref:`sch`.
 
-Logging:
-^^^^^^^^
+Logging
+^^^^^^^
 
 **File:** File path to the log file that will be used to log.
-Default is `/etc/ctmo/logs/ctmo.log`.
+Default is ``/etc/ctmo/logs/ctmo.log``.
 
-**Log Level:** One of DEBUG, INFO, WARNING, ERROR. Default: INFO.
+**Log Level:** One of ``DEBUG``, ``INFO``, ``WARNING``, ``ERROR``. Default: ``INFO``.
+
+.. _YAML: https://yaml.org
