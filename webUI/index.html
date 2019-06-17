@@ -16,7 +16,12 @@
 
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
+  <!-- fancy toggle checkbox -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- better AJAX -->
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 
 </head>
 
@@ -34,8 +39,8 @@
       <div class="col-4-sm">
         <div class="container">
 
-          <div id="app2" class="card">
-            <div class="card-header">Repeating component</div>
+          <div id="switchapp" class="card">
+            <div class="card-header">Switches</div>
             <div class="card-body">
               <div class="form-group">
                 <label for="address">Address:</label>
@@ -65,30 +70,55 @@
         </label>
         <label>{{ label }} is {{ state ? "ON": "OFF" }}</label>
         <p>Will connect to {{ ipaddress }}</p>
+        <p>{{ outmessage }}</p>
       </div>
       `,
       data: function() {
         return {
-          state: false
+          state: false,
+          outmessage: ""
         }
       },
       methods: {
         toggle: function() {
           this.state = !this.state
+          this.sendOnRequest()
+        },
+        sendOnRequestAjax: function () {
+          var vm = this
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                vm.toggle();
+                vm.outmessage = "Success!"
+              } else {
+                vm.outmessage = "Error!"
+              }
+            }
+          }
+          xhttp.open("GET", "ajax_response.txt", true);
+          xhttp.send();
+        },
+        sendOnRequest: function () {
+          vm = this
+          this.outmessage = "Connecting..."
+          axios.get('https://yesno.wtf/api')
+        .then(function (response) {
+          vm.outmessage = "Success! Response was: " + response.data.answer
+        })
+        .catch(function (error) {
+          vm.outmessage = 'Error! Could not reach the API. ' + error
+        })
         }
       }
     });
 
-    var app2 = new Vue({
-      el: "#app2",
+    var switchapp = new Vue({
+      el: "#switchapp",
       data: function () {
         return {
           address: ""
-        }
-      },
-      methods: {
-        logme: function () {
-          console.log("Yes")
         }
       }
     })
