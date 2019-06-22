@@ -6,11 +6,12 @@ Telescope Module
 """
 from loguru import logger
 from nanpy import ArduinoApi, SerialManager
-from time import sleep
-import sys
+from . import config
 
-connection = SerialManager(device='/dev/cu.usbmodem14101')
+domeconf = config.get_config_for_key("Dome Address")
+connection = SerialManager(device=domeconf.get("Arduino"))
 a = ArduinoApi(connection=connection)
+
 
 def turn_led(state):
     global a
@@ -41,17 +42,19 @@ def front_desk(work_order):
 def serve():
     logger.info("Started serving.")
     from . import config
+
     # try:
     #     device = config.get_config_for_key('Dome Address').get('Arduino')
     #     _arduino = Arduino(device)
     # except:
     #     logger.error("Error setting up Arduino")
     from xmlrpc.server import SimpleXMLRPCServer
-    net_address = config.get_config_for_key('Dome Address')
-    server = SimpleXMLRPCServer((net_address.get('IP'), net_address.get('Port')))
+
+    net_address = config.get_config_for_key("Dome Address")
+    server = SimpleXMLRPCServer((net_address.get("IP"), net_address.get("Port")))
     server.register_function(front_desk, "front_desk")
     server.serve_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     serve()

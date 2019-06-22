@@ -22,34 +22,99 @@ Vue.component('single-switch', {
       this.state = !this.state
       this.sendOnRequest()
     },
-    sendOnRequestAjax: function () {
-      var vm = this
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            vm.toggle();
-            vm.outmessage = "Success!"
-          } else {
-            vm.outmessage = "Error!"
-          }
-        }
-      }
-      xhttp.open("GET", "ajax_response.txt", true);
-      xhttp.send();
-    },
     sendOnRequest: function () {
       vm = this
       this.outmessage = "Connecting..."
-      axios.get('https://yesno.wtf/api')
-    .then(function (response) {
-      vm.outmessage = "Success!"
-      console.log(response.data)
-    })
-    .catch(function (error) {
-      vm.outmessage = 'Error! '
-      console.log(error)
-    })
+      wo_on = `<?xml version='1.0'?>
+<methodCall>
+    <methodName>front_desk</methodName>
+    <params>
+        <param>
+            <value><struct>
+                <member>
+                    <name>ID</name>
+                    <value><string>1</string></value>
+                </member>
+                <member>
+                    <name>WOType</name>
+                    <value><string>Dome</string></value>
+                </member>
+                <member>
+                    <name>Priority</name>
+                    <value><int>2</int></value>
+                </member>
+                <member>
+                    <name>Datetime</name>
+                    <value><string>2019-03-05T14:34:54.234</string></value>
+                </member>
+                <member>
+                    <name>User</name>
+                    <value><string>John Doe</string></value>
+                </member>
+                <member>
+                    <name>Blink01</name>
+                    <value><boolean>1</boolean></value>
+                </member>
+            </struct></value>
+        </param>
+    </params>
+</methodCall>`
+      wo_off = `<?xml version='1.0'?>
+<methodCall>
+    <methodName>front_desk</methodName>
+    <params>
+        <param>
+            <value><struct>
+                <member>
+                    <name>ID</name>
+                    <value><string>1</string></value>
+                </member>
+                <member>
+                    <name>WOType</name>
+                    <value><string>Dome</string></value>
+                </member>
+                <member>
+                    <name>Priority</name>
+                    <value><int>2</int></value>
+                </member>
+                <member>
+                    <name>Datetime</name>
+                    <value><string>2019-03-05T14:34:54.234</string></value>
+                </member>
+                <member>
+                    <name>User</name>
+                    <value><string>John Doe</string></value>
+                </member>
+                <member>
+                    <name>Blink01</name>
+                    <value><boolean>0</boolean></value>
+                </member>
+            </struct></value>
+        </param>
+    </params>
+</methodCall>`
+      if (this.state) {
+        wo = wo_on
+      } else {
+        wo = wo_off
+      }
+      axios({
+        method: 'post',
+        url: this.ipaddress,
+        data: wo,
+        headers: {
+          'Content-type': 'text/xml'
+        }
+      })
+      //axios.post(url, {'Content-type': 'text/xml'})
+      .then(function (response) {
+        vm.outmessage = "Success!"
+        console.log(response.data)
+      })
+      .catch(function (error) {
+        vm.outmessage = 'Error! '
+        console.log(error)
+      })
     }
   }
 });
