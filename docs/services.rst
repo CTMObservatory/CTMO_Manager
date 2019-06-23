@@ -38,7 +38,7 @@ or `Apple's official documentation <https://developer.apple.com/library/archive/
 XML-RPC Interface
 -----------------
 
-Each services will run as a daemon (background process)
+Each service will run as a daemon (background process)
 and work on a specific port specified in the configuration file
 using the `XML-RPC`_ protocol.
 
