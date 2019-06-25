@@ -65,8 +65,7 @@ def serve():
 
     net_address = config.get_config_for_key("Scheduler Address")
     server = DocXMLRPCServer(
-        (net_address.get("IP"), net_address.get("Port")),
-        requestHandler=CORSRequestHandler,
+        ("0.0.0.0", net_address.get("Port")), requestHandler=CORSRequestHandler
     )
     server.set_server_title("Scheduler Docs")
     server.set_server_name("CTMO Scheduler Service")

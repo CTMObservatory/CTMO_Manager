@@ -51,7 +51,7 @@ def serve():
     from xmlrpc.server import SimpleXMLRPCServer
 
     net_address = config.get_config_for_key("Dome Address")
-    server = SimpleXMLRPCServer((net_address.get("IP"), net_address.get("Port")))
+    server = SimpleXMLRPCServer(("0.0.0.0", net_address.get("Port")))
     server.register_function(front_desk, "front_desk")
     server.serve_forever()
 
