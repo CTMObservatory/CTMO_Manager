@@ -1,7 +1,7 @@
 from . import telescope
 from . import scheduler
 
-__version__ = "0.1b1"
+__version__ = "0.1b2"
 
 # Set up logging
 from loguru import logger
