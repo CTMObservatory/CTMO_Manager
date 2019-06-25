@@ -15,12 +15,20 @@ Installation requires root privilege.
 
 ## Start any service with systemctl
 
-To start, stop or restart a service, use
+Once the system is properly configured, you can start, stop or restart any of the services.
+
+### In Linux OS:
 
     $ systemctl [action] [service]
 
 Where `action` is one of: `start`, `stop` or `restart`
 and service is any of `telescoped` or `schedulerd`.
+
+### In MacOS:
+
+    $ launchctl load /Library/LaunchAgents/org.ctmo.scheduler
+
+To stop use `unload` instead.
 
 ## To clean and uninstall:
 
